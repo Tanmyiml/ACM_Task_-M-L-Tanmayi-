@@ -1,0 +1,33 @@
+Add binay
+
+
+Code:
+#add binary
+a="101"
+b="111"
+if len(a)!=len(b):
+    ma=max(len(a),len(b))
+    a=a.zfill(ma)
+    b=b.zfill(ma)
+answer=""
+c=0
+for i in range(len(a)-1,-1,-1):
+    sum=int(a[i])+int(b[i])+c
+    if sum==0 or sum==1:
+        answer=str(sum)+answer
+        c=0
+    elif sum==2:
+        answer="0"+answer
+        c=1
+    else:
+        answer="1"+answer
+if c:
+    answer="1"+answer
+print(answer)
+Explain:
+Here we are first making both the strings to the same length by adding zeros at the end using zfill() which takes desired length as the input. Then we are initializing two variables answer and c(carrier).
+Normally:
+0+0=0
+1+0=1
+0+1=1
+1+1=10 here the 1 is carried to the next pair. Sum is to calculate the sum of the pair and the c .if sum is 1 or 0 the it comes under the first cases where there is no carry requires. If sum is 2 then 0 is added and 1 is carried and if sum is 3 ,1 is added to the initial 10 (11). now 1 is added to answer and 1 is carried . so on the last if condition to che

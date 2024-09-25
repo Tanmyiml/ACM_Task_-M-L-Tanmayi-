@@ -1,0 +1,20 @@
+Reverse bit
+ 
+Code:
+n=00000010100101000001111010011100
+r=0
+for i in range(32):
+    r=r<<1      # left shift 
+    bit=n&1   #1 and 1=1 ,1 and 0 =0
+    r=r|bit   #0 or 1= 1 ,0 or 0 = 0
+    n=n>>1   # right shift
+print(r)
+Explain:
+r is the reverse bit variable. here we are running a  loop for 32 time where each time the r is left shifted that means a 0 is added at the end .now r is 00 then bit is a new variable to get the last bit .we get the last bit by using and operator .as if n is the last bit 
+if n=0            if n=1
+0 &1=0         1&1=1
+Now to add it to the reverse we are using the or operator. 
+If bit =0      if bit =1
+0|0=0         1|1=1
+Once this is done we are moving to the next bit by using the right shift .which remove the last bit .
+Example: 100>>1=10 and 100<<1=1000

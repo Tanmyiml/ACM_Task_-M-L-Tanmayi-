@@ -1,1 +1,134 @@
+Doubly Linked List Implementation in Python
+
+Overview
+This document provides a comprehensive explanation of a doubly linked list implementation in Python.
+A doubly linked list is a data structure where each node contains a data field and two pointers, one pointing to the next node and one to the previous node.
+This allows for traversal in both directions.
+
+The Node class represents a single element in the doubly linked list.
+data: The value stored in the node.
+forv: A pointer to the next node.
+prev: A pointer to the previous node.
+class Node:
+    def __init__(self, data=None, forv=None, prev=None):
+        self.data = data
+        self.forv = forv  # Pointer to the next node
+        self.prev = prev  # Pointer to the previous node
+The class Doubly_linked_list consists of all the implementations:
+def __init__(self):
+        self.head=None
+is a contructor to initial the doubly linked.
+def insert_at_b(self,data):
+        if self.head is None:
+            node=Node(data,self.head,None)
+            self.head=node 
+        else:
+            node=Node(data,self.head,None)
+            self.head.prev=node
+            self.head=node
+is used to insert the given data at the beging of the list.
+First we are checking if the list is empty and then add.Else we create a node anf make it as the new head.And change the prev of the cuurent node to the address od the new node.
+def insert_at_end(self,data):
+        if self.head is None:
+            node=Node(data,self.head,None)
+            self.head=node
+        else:
+            itr=self.head
+            while itr.forv:
+                itr=itr.forv
+            node=Node(data,None,itr)
+            itr.forv=node
+This is to insert a data at the end.Here we check if the list is empty .if empty we create a node with forv as none and add.
+Else we iterate to the end of the list .Once we reach the end we create and add a node.
+ def get_length(self):
+        count=0
+        itr=self.head
+        while itr:
+            count+=1
+            itr=itr.forv
+        return count
+this function is to find the lenght of the list. THis will help in the other functions.
+def insert_at(self, index, data):
+        if index<0 or index>self.get_length():
+            raise Exception("Invalid Index")
+
+        if index==0:
+            self.insert_at_begining(data)
+            return
+        if index==self.get_length():
+            self.insert_at_end(data)
+            return
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index - 1:
+                node = Node(data, itr.forv, itr)
+                itr.forv.prev = node
+                itr.forv= node
+                break
+
+            itr = itr.forv
+            count += 1
+This is to insert a node at a particular index position.We check if the index provided is present if not throw an exception.then we check if it is the index is 0 or last index .Accordingly we call insert at begining and insert at end functions.
+then we iterate through the list to go till the we reach the desired index-1.We create a node and change the forv variable of the before node and the prev of the after node to the new node .
+    def remove_at(self, index):
+        if index<0 or index>=self.get_length():
+            raise Exception("Invalid Index")
+
+        if index==0:
+            self.head = self.head.next
+            self.head.prev = None
+            return
+        if index==self.get_length()-1:
+            tail=self.get_tail()
+            tail.prev.forv=None
+            tail.prev=None
+            return
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index:
+                itr.prev.forv = itr.forv
+                
+                itr.forv.prev = itr.prev
+                break
+
+            itr = itr.forv
+            count+=1
+This is to remove nodes at the beging ,the end and at a particular index.First check if hte index provided is valid ,if not throw exception
+then if index=0 (remove at beging )we change the head as the second node and make the forv of the second node as none.If it is remove at end then we use the get_tail() method to get the tail of the list and then make its prev node's forv as none and the tail's prev as none.
+NOw for remove at index ,we iterate to given index position and then remove by inchanging the pointers for the before node and the next node.
+def get_tail(self):
+        itr=self.head
+        while itr.forv:
+            itr=itr.forv
+        return itr
+to get the tail nodes pointer.
+def print(self):
+        if self.head is None:
+            print("Linked list is empty")
+            
+        else:
+            itr = self.head
+            llstr = ''
+            while itr:
+                llstr += str(itr.data)+' --> ' 
+                itr = itr.forv
+            print(llstr)
+to iterate from the front and print all the nodes from head to tail.
+def printb(self):
+        if self.head is None:
+            print("Linked list is empty")
+            
+        else:
+            itr = self.get_tail()
+            llstr = ''
+            while itr:
+                llstr += str(itr.data)+' --> ' 
+                itr = itr.prev
+            print(llstr)
+to iterate from the back and print all the nodes from tail to head.
+
+
+
 

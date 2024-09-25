@@ -1,0 +1,15 @@
+Number of 1 bits.
+ 
+Code:
+n=2147483645
+b=bin(n)
+print(b)
+c=0
+for i in range(len(b)-2):
+    bit=n&1
+    if bit ==1:
+        c+=1
+    n=n>>1
+print(c)
+explain:
+we are converting the integer number into its binary representation. Then we define c which is the counter for the 1 bits. We are running a loop for each element and using and operator to get the last bit. Checking if it is 1 or 0, if 1 increase the count.Finally doing right shift to move on to the next bit.

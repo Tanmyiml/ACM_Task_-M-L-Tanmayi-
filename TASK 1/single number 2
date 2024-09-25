@@ -1,0 +1,13 @@
+Single number 2:
+ 
+Code:
+nums = [0,1,0,1,0,1,99]
+i=0
+while i <=len(nums)-1:
+    a=nums[i]
+    if a not in nums[:i] and a not in nums[i+1:]:
+        print(a)
+        break
+    i+=1
+Explain:
+Here we are running a loop and finding out if the elements exists in the array elsewhere .If it doesn’t exist then print it .

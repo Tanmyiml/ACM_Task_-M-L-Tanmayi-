@@ -1,0 +1,14 @@
+Single number.
+ 
+Code:
+nums = [4,2,1,2,1]
+d={}
+for i in nums:
+    if i in d.keys():
+        d.pop(i)
+    else:
+        d[i]=1
+a=list(d)
+print(a[0])
+Explain:
+We are declaring a dictionary named d to maintain the count .here we are checking if the element already exists in the d or not .If it doesn’t exist then it added .if it exists that means that it appears twice in the array ,so we are removing the pair from d .finally I didn’t get how to print the key so I used list to get the number.

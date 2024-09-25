@@ -1,0 +1,120 @@
+#doubly linked list
+class Node:
+    def __init__(self, data=None, forv=None, prev=None):
+        self.data = data
+        self.forv =forv
+        self.prev = prev
+class Doubly_linked_list:
+    def __init__(self):
+        self.head=None
+    def insert_at_b(self,data):
+        if self.head is None:
+            node=Node(data,self.head,None)
+            self.head=node
+        else:
+            node=Node(data,self.head,None)
+            self.head.prev=node
+            self.head=node
+    def insert_at_end(self,data):
+        if self.head is None:
+            node=Node(data,self.head,None)
+            self.head=node
+        else:
+            itr=self.head
+            while itr.forv:
+                itr=itr.forv
+            node=Node(data,None,itr)
+            itr.forv=node
+    def print(self):
+        if self.head is None:
+            print("Linked list is empty")
+            
+        else:
+            itr = self.head
+            llstr = ''
+            while itr:
+                llstr += str(itr.data)+' --> ' 
+                itr = itr.forv
+            print(llstr)
+    def get_length(self):
+        count=0
+        itr=self.head
+        while itr:
+            count+=1
+            itr=itr.forv
+        return count
+    def insert_at(self, index, data):
+        if index<0 or index>self.get_length():
+            raise Exception("Invalid Index")
+
+        if index==0:
+            self.insert_at_begining(data)
+            return
+        if index==self.get_length():
+            self.insert_at_end(data)
+            return
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index - 1:
+                node = Node(data, itr.forv, itr)
+                itr.forv.prev = node
+                itr.forv= node
+                break
+
+            itr = itr.forv
+            count += 1
+    def get_tail(self):
+        itr=self.head
+        while itr.forv:
+            itr=itr.forv
+        return itr
+    def remove_at(self, index):
+        if index<0 or index>=self.get_length():
+            raise Exception("Invalid Index")
+
+        if index==0:
+            self.head = self.head.next
+            self.head.prev = None
+            return
+        if index==self.get_length()-1:
+            tail=self.get_tail()
+            tail.prev.forv=None
+            tail.prev=None
+            return
+        count = 0
+        itr = self.head
+        while itr:
+            if count == index:
+                itr.prev.forv = itr.forv
+                
+                itr.forv.prev = itr.prev
+                break
+
+            itr = itr.forv
+            count+=1
+    def printb(self):
+        if self.head is None:
+            print("Linked list is empty")
+            
+        else:
+            itr = self.get_tail()
+            llstr = ''
+            while itr:
+                llstr += str(itr.data)+' --> ' 
+                itr = itr.prev
+            print(llstr)
+ll=Doubly_linked_list()
+ll.insert_at_b(12)
+ll.insert_at_b(13)
+ll.insert_at_b(14)
+ll.insert_at_end(15)
+ll.print()
+
+ll.insert_at(1,10)
+print(ll.get_length())
+ll.insert_at(5,10)
+ll.print()
+ll.remove_at(5)
+ll.print()
+ll.printb()

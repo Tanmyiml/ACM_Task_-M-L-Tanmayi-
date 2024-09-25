@@ -1,0 +1,27 @@
+Bitwise AND of numbers in range
+ 
+Code:
+left = 2
+right = 4
+if left ==right:
+    print(left & right)
+bit=left
+left=left+1
+while left<=right:
+    bit=bit & left
+    if bit==0:
+        break
+    left+=1
+print(bit)
+Explain:
+Here first we are checking if both are same .if so return any one .then we define a variable bit and its value is left and we increased left by 1  .so if left is 5 and right is 7 .here bit is 5 and left is now 6 .the loop runs and if bit becomes then no matter with what u try the AND operator it ill be 0 so we break .if not it continues and finally prints bit  value.
+With this approach 8260/8271 test cases have passed . So I tried another approach.
+ 
+Code:
+left=5
+right=7
+while left<right:
+    right=right&(right-1)
+print(right)
+Explain:
+Here we are going in the reverse order.so even if they are like equal then the condition in the loop will not be satisfied and then right is printed .if right becomes 0 in the middle also the condition of the loop breaks as 0 is not less then left .

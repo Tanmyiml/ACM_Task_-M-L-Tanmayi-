@@ -1,0 +1,21 @@
+in c:
+void inOrder(struct node *root) {
+    if (root != NULL) {
+        inOrder(root->left);
+        printf("%d ", root->data);
+        inOrder(root->right);
+    }
+}
+in python:
+ def inordertransveral(self):
+        element=[]
+        if self.left:
+            element+=self.left.inordertransveral()
+        element.append(self.data)
+        if self.right:
+            element+=self.right.inordertransveral()
+        return element
+explain:
+in in-order ransversal we frist print the left sub tree and then the node and the right sub tree.here the function is recursive function and all the values are being stored into the elemnets list.
+we are checking tf the subtree has a left branch .if so we are calling the same function again but with the left branch as the main node .Then after we add the left elemnts then we add the node's data adn then we will repeat the same process for the right subbranch .
+finally when we return elements list ,iit will contain the values of the treenodes according to in order transversal method.

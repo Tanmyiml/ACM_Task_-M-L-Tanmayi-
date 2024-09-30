@@ -1,0 +1,21 @@
+in c:
+void postOrder(struct node *root) {
+    if (root != NULL) {
+        postOrder(root->left);
+        postOrder(root->right);
+        printf("%d ", root->data);
+    }
+}
+in python:
+def postordertransveral(self):
+        elements = []
+        if self.left:
+            elements += self.left.postordertransveral()
+        if self.right:
+            elements += self.right.postordertransveral()
+        elements.append(self.data)
+        return elements
+explain:
+In post-order traversal, we first traverse the left subtree, then the right subtree, and finally print the node. Here, the function is recursive, and all the values are being stored in the elements list. 
+We check if the subtree has a left branch; if so, we call the same function again with the left branch as the main node. After traversing the left subtree, we repeat the process for the right subtree, and finally, we add the node's data. 
+When we return the elements list, it will contain the values of the tree nodes according to the post-order traversal method.

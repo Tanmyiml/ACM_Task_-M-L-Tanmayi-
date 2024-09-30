@@ -1,0 +1,35 @@
+in c:
+SinglyLinkedListNode* removeDuplicates(SinglyLinkedListNode* llist) {
+    if (llist == NULL) {
+        return NULL;
+    }
+
+    SinglyLinkedListNode* current = llist;
+
+    while (current->next != NULL) {
+        if (current->data == current->next->data) {
+            SinglyLinkedListNode* temp = current->next;
+            current->next = current->next->next;
+            free(temp);
+        } else {
+            current = current->next;
+        }
+    }
+
+    return llist;
+}
+in python:
+def removeduplicates(self,s):
+        if s==None:
+            print("Empty");
+            return
+        else:
+            itr=s
+            while itr.address:
+                if itr.data==itr.address.data:
+                    itr.address=itr.address.address;
+                    continue
+                itr=itr.address
+explain :
+first we are checking if the list is empty or not.If not we taking the head pointer as itr.using the while loop we are iterating through the loop and checking if the current node value is equal to next value .if equal the we are removing the node and the value of i will not be changed .
+  if not the same when we will increase the i value and continue the loop till it reaches the last node in the linked list.

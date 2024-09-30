@@ -1,0 +1,66 @@
+in c:
+SinglyLinkedListNode* mergeLists(SinglyLinkedListNode* head1, SinglyLinkedListNode* head2) {
+    if (!head1) return head2;
+    if (!head2) return head1;
+
+    SinglyLinkedListNode* mergedHead = NULL;
+    if (head1->data < head2->data) {
+        mergedHead = head1;
+        head1 = head1->next;
+    } else {
+        mergedHead = head2;
+        head2 = head2->next;
+    }
+
+    SinglyLinkedListNode* current = mergedHead;
+
+    while (head1 && head2) {
+        if (head1->data < head2->data) {
+            current->next = head1;
+            head1 = head1->next;
+        } else {
+            current->next = head2;
+            head2 = head2->next;
+        }
+        current = current->next;
+    }
+
+    if (head1) {
+        current->next = head1;
+    } else {
+        current->next = head2;
+    }
+
+    return mergedHead;
+}
+
+in python:
+def merge(self, b):
+        itr_b = b
+        while itr_b:  # Merge list `b` into current list
+            self.insert_at_end(itr_b.data)
+            itr_b = itr_b.address
+        i=0
+        while i<self.get_length():
+            it = self.head
+            while it.address:  # Sort the list
+                if it.data > it.address.data:
+                    temp = it.data
+                    it.data = it.address.data
+                    it.address.data = temp
+                it = it.address
+            i+=1
+def insert_at_end(self, data):
+        if self.head is None:
+            node = Node(data, None)
+            self.head = node
+            return
+        itr = self.head
+        while itr.address:  # Loop till the last node
+            itr = itr.address
+        itr.address = Node(data, None)
+def get_head(self):
+        return self.head
+explain:
+we are taking the second list's head pointer as input and then using the while loop and the insert_at_end function we aree adding the second list to the first one .now we are taking itr as the head pointer of the first list(which now hass all the second list elemnets as well).
+we are iterating throught the linked list and using the bubble sort i am sorting the nodes.
